@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinnacle AI Boutique - Test Page</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Pinnacle AI Boutique</h1>
+                    <span class="tagline">AI-Powered Shopping Experience</span>
+                </div>
+                
+                <nav class="nav-desktop">
+                    <ul class="nav-list">
+                        <li><a href="#home" class="nav-link active">Home</a></li>
+                        <li><a href="#products" class="nav-link">Products</a></li>
+                        <li><a href="#categories" class="nav-link">Categories</a></li>
+                        <li><a href="#about" class="nav-link">About</a></li>
+                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Search products...">
+                        <button id="searchBtn" class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    
+                    <button id="cartBtn" class="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cartCount" class="cart-count">0</span>
+                    </button>
+                    
+                    <button id="mobileMenuToggle" class="mobile-menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <nav id="mobileMenu" class="mobile-menu">
+            <ul class="mobile-nav-list">
+                <li><a href="#home" class="mobile-nav-link">Home</a></li>
+                <li><a href="#products" class="mobile-nav-link">Products</a></li>
+                <li><a href="#categories" class="mobile-nav-link">Categories</a></li>
+                <li><a href="#about" class="mobile-nav-link">About</a></li>
+                <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Welcome to Pinnacle AI Boutique</h1>
+                <p class="hero-subtitle">Discover the future of shopping with AI-powered recommendations and seamless experiences</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary btn-large" onclick="scrollToProducts()">
+                        <i class="fas fa-shopping-bag"></i>
+                        Shop Now
+                    </button>
+                    <button class="btn btn-outline btn-large" onclick="scrollToCategories()">
+                        <i class="fas fa-list"></i>
+                        Browse Categories
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Pinnacle AI Boutique?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="feature-title">AI-Powered</h3>
+                    <p class="feature-description">Personalized recommendations based on your preferences and shopping history</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3 class="feature-title">Fast Delivery</h3>
+                    <p class="feature-description">Quick and reliable shipping with real-time tracking</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Secure Shopping</h3>
+                    <p class="feature-description">Your data and payments are protected with enterprise-grade security</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="feature-title">24/7 Support</h3>
+                    <p class="feature-description">Round-the-clock customer support to help with any questions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories">
+        <div class="container">
+            <h2 class="section-title">Shop by Category</h2>
+            <div id="categoriesGrid" class="categories-grid">
+                <!-- Categories will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Products</h2>
+                <div class="section-actions">
+                    <select id="sortSelect" class="form-select">
+                        <option value="name">Sort by Name</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Highest Rated</option>
+                        <option value="newest">Newest First</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div id="productsGrid" class="products-grid">
+                <!-- Products will be loaded here -->
+            </div>
+            
+            <div class="load-more-container">
+                <button id="loadMoreProducts" class="btn btn-outline">
+                    Load More Products
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2 class="newsletter-title">Stay Updated</h2>
+                <p class="newsletter-description">Get the latest deals and AI-powered recommendations delivered to your inbox</p>
+                
+                <form id="newsletterForm" class="newsletter-form">
+                    <div class="form-group">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Subscribe
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Pinnacle AI Boutique</h3>
+                    <p class="footer-description">Revolutionizing e-commerce with AI-powered shopping experiences</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Customer Service</h4>
+                    <ul class="footer-links">
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#shipping">Shipping Info</a></li>
+                        <li><a href="#returns">Returns</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Contact Info</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> hello@pinnacle-ai.com</p>
+                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                        <p><i class="fas fa-map-marker-alt"></i> San Francisco, CA</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pinnacle AI Boutique. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Shopping Cart</h2>
+                <button class="modal-close" onclick="closeCart()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="cartModalBody" class="modal-body">
+                <!-- Cart content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content modal-content-large">
+            <div class="modal-header">
+                <h2 class="modal-title">Product Details</h2>
+                <button class="modal-close" onclick="closeProductModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="productModalBody" class="modal-body">
+                <!-- Product content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript Files -->
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // Test data for demonstration
+        const testCategories = [
+            {
+                id: 1,
+                name: "Electronics",
+                description: "Latest gadgets and tech accessories",
+                image_url: "https://via.placeholder.com/300x200/4A90E2/FFFFFF?text=Electronics",
+                product_count: 25
+            },
+            {
+                id: 2,
+                name: "Fashion",
+                description: "Trendy clothing and accessories",
+                image_url: "https://via.placeholder.com/300x200/E94B3C/FFFFFF?text=Fashion",
+                product_count: 45
+            },
+            {
+                id: 3,
+                name: "Home & Garden",
+                description: "Everything for your home and garden",
+                image_url: "https://via.placeholder.com/300x200/50C878/FFFFFF?text=Home",
+                product_count: 30
+            },
+            {
+                id: 4,
+                name: "Sports & Outdoors",
+                description: "Gear for active lifestyles",
+                image_url: "https://via.placeholder.com/300x200/FF6B35/FFFFFF?text=Sports",
+                product_count: 20
+            }
+        ];
+
+        const testProducts = [
+            {
+                id: 1,
+                name: "AI-Powered Smart Watch",
+                description: "Revolutionary smartwatch with AI health monitoring and personalized recommendations.",
+                short_description: "AI health monitoring and personalized recommendations.",
+                price: 299.99,
+                compare_at_price: 399.99,
+                images: [
+                    "https://via.placeholder.com/300x300/4A90E2/FFFFFF?text=Smart+Watch",
+                    "https://via.placeholder.com/300x300/357ABD/FFFFFF?text=Watch+2"
+                ],
+                rating: 4.5,
+                review_count: 128,
+                is_featured: true,
+                is_new: false,
+                sku: "SW-AI-001",
+                category_name: "Electronics",
+                inventory_quantity: 15,
+                tags: ["smartwatch", "AI", "health", "fitness"]
+            },
+            {
+                id: 2,
+                name: "Wireless Bluetooth Headphones",
+                description: "Premium noise-cancelling headphones with superior sound quality.",
+                short_description: "Premium noise-cancelling headphones with superior sound quality.",
+                price: 149.99,
+                compare_at_price: null,
+                images: [
+                    "https://via.placeholder.com/300x300/2C3E50/FFFFFF?text=Headphones"
+                ],
+                rating: 4.2,
+                review_count: 89,
+                is_featured: false,
+                is_new: true,
+                sku: "HP-BT-002",
+                category_name: "Electronics",
+                inventory_quantity: 8,
+                tags: ["headphones", "wireless", "audio"]
+            },
+            {
+                id: 3,
+                name: "Organic Cotton T-Shirt",
+                description: "Comfortable and sustainable t-shirt made from 100% organic cotton.",
+                short_description: "Comfortable and sustainable t-shirt made from 100% organic cotton.",
+                price: 29.99,
+                compare_at_price: 39.99,
+                images: [
+                    "https://via.placeholder.com/300x300/27AE60/FFFFFF?text=T-Shirt"
+                ],
+                rating: 4.7,
+                review_count: 156,
+                is_featured: true,
+                is_new: false,
+                sku: "TS-ORG-003",
+                category_name: "Fashion",
+                inventory_quantity: 25,
+                tags: ["organic", "cotton", "sustainable", "clothing"]
+            },
+            {
+                id: 4,
+                name: "Smart Home Security Camera",
+                description: "AI-powered security camera with facial recognition and mobile alerts.",
+                short_description: "AI-powered security camera with facial recognition and mobile alerts.",
+                price: 199.99,
+                compare_at_price: null,
+                images: [
+                    "https://via.placeholder.com/300x300/8E44AD/FFFFFF?text=Camera"
+                ],
+                rating: 4.3,
+                review_count: 67,
+                is_featured: false,
+                is_new: true,
+                sku: "CAM-SM-004",
+                category_name: "Electronics",
+                inventory_quantity: 12,
+                tags: ["security", "camera", "AI", "smart-home"]
+            },
+            {
+                id: 5,
+                name: "Yoga Mat Premium",
+                description: "Non-slip premium yoga mat perfect for all types of yoga practice.",
+                short_description: "Non-slip premium yoga mat perfect for all types of yoga practice.",
+                price: 49.99,
+                compare_at_price: 69.99,
+                images: [
+                    "https://via.placeholder.com/300x300/E67E22/FFFFFF?text=Yoga+Mat"
+                ],
+                rating: 4.6,
+                review_count: 203,
+                is_featured: true,
+                is_new: false,
+                sku: "YM-PREM-005",
+                category_name: "Sports & Outdoors",
+                inventory_quantity: 30,
+                tags: ["yoga", "fitness", "exercise", "wellness"]
+            },
+            {
+                id: 6,
+                name: "Ceramic Plant Pot Set",
+                description: "Beautiful set of ceramic plant pots in various sizes for indoor plants.",
+                short_description: "Beautiful set of ceramic plant pots in various sizes for indoor plants.",
+                price: 39.99,
+                compare_at_price: null,
+                images: [
+                    "https://via.placeholder.com/300x300/16A085/FFFFFF?text=Plant+Pots"
+                ],
+                rating: 4.4,
+                review_count: 92,
+                is_featured: false,
+                is_new: false,
+                sku: "PP-CER-006",
+                category_name: "Home & Garden",
+                inventory_quantity: 18,
+                tags: ["plants", "ceramic", "home-decor", "garden"]
+            }
+        ];
+
+        // Mock API responses for testing
+        window.ProductsAPI = {
+            getAll: async (params) => {
+                console.log('Mock ProductsAPI.getAll called with params:', params);
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        resolve({
+                            products: testProducts,
+                            total: testProducts.length
+                        });
+                    }, 500);
+                });
+            },
+            
+            getById: async (id) => {
+                console.log('Mock ProductsAPI.getById called with id:', id);
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        const product = testProducts.find(p => p.id == id);
+                        resolve(product);
+                    }, 300);
+                });
+            }
+        };
+
+        window.CategoriesAPI = {
+            getAll: async () => {
+                console.log('Mock CategoriesAPI.getAll called');
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        resolve(testCategories);
+                    }, 300);
+                });
+            }
+        };
+
+        window.CartAPI = {
+            getOrCreate: async (sessionId) => {
+                console.log('Mock CartAPI.getOrCreate called with sessionId:', sessionId);
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        resolve({
+                            id: 'cart_' + Date.now(),
+                            items: [],
+                            total_price: 0,
+                            total_items: 0,
+                            currency: 'USD'
+                        });
+                    }, 200);
+                });
+            },
+            
+            addItem: async (cartId, itemData) => {
+                console.log('Mock CartAPI.addItem called:', { cartId, itemData });
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        resolve({
+                            id: cartId,
+                            items: [{
+                                id: 'item_' + Date.now(),
+                                product_id: itemData.product_id,
+                                product_name: 'Test Product',
+                                product_image: 'https://via.placeholder.com/80x80',
+                                price: 99.99,
+                                quantity: itemData.quantity,
+                                variant_name: itemData.variant_id ? 'Test Variant' : null
+                            }],
+                            total_price: 99.99,
+                            total_items: 1,
+                            currency: 'USD'
+                        });
+                    }, 300);
+                });
+            }
+        };
+
+        // Helper functions for testing
+        function scrollToProducts() {
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToCategories() {
+            document.getElementById('categories').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closeCart() {
+            const cartModal = document.getElementById('cartModal');
+            if (cartModal) {
+                cartModal.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function closeProductModal() {
+            const productModal = document.getElementById('productModal');
+            if (productModal) {
+                productModal.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Test page loaded successfully');
+        });
+    </script>
+</body>
+</html>

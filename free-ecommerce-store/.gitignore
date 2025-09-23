@@ -1,0 +1,169 @@
+# WordPress
+wp-config.php
+wp-content/advanced-cache.php
+wp-content/backup-db/
+wp-content/backups/
+wp-content/blogs.dir/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/uploads/
+wp-content/mu-plugins/
+wp-content/plugins/hello.php
+wp-content/plugins/akismet/
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+*.log
+wp-content/debug.log
+
+# Cache
+wp-content/cache/
+*.cache
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Backup files
+*.bak
+*.backup
+*.sql
+*.sql.gz
+
+# WordPress specific
+wp-content/languages/plugins/*.mo
+wp-content/languages/themes/*.mo
+
+# Node.js (for build tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python (for automation scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Models and AI
+models/
+*.model
+*.h5
+*.pkl
+*.pickle
+
+# Configuration files with secrets
+config/credentials.json
+config/service-account.json
+config/google-credentials.json
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Session data
+sessions/
+*.session
+
+# Vendor directories
+vendor/
+vendors/
+
+# Composer
+composer.phar
+composer.lock
+
+# Bower
+bower_components/
+
+# NPM
+package-lock.json
+yarn.lock
+
+# WordPress plugins and themes (if you want to exclude them)
+wp-content/plugins/*
+!wp-content/plugins/custom-scripts/
+wp-content/themes/*
+!wp-content/themes/custom-theme/
+
+# Uploads (media files)
+wp-content/uploads/*
+
+# Must-use plugins
+wp-content/mu-plugins/*
+
+# Drop-in files
+wp-content/object-cache.php
+wp-content/sunrise.php
+
+# WordPress core (if you want to exclude it)
+wp-admin/
+wp-includes/
+
+# Index files
+index.php
+license.txt
+readme.html
+wp-activate.php
+wp-blog-header.php
+wp-comments-post.php
+wp-config-sample.php
+wp-cron.php
+wp-links-opml.php
+wp-load.php
+wp-login.php
+wp-mail.php
+wp-settings.php
+wp-signup.php
+wp-trackback.php
+xmlrpc.php

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinnacle AI Platform - Private Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Authentication Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Pinnacle AI Platform</h2>
+                <span class="close" onclick="closeAuthModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" onclick="showLoginForm()">Login</button>
+                    <button class="auth-tab" onclick="showRegisterForm()">Register</button>
+                </div>
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <form id="registerForm" class="auth-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="registerName">Full Name</label>
+                        <input type="text" id="registerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">Confirm Password</label>
+                        <input type="password" id="registerConfirmPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard" class="dashboard" style="display: none;">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <span>Pinnacle AI</span>
+                </div>
+            </div>
+
+            <div class="sidebar-menu">
+                <div class="menu-section">
+                    <h3>Dashboard</h3>
+                    <ul>
+                        <li class="active" data-page="overview">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Overview</span>
+                        </li>
+                        <li data-page="agents">
+                            <i class="fas fa-robot"></i>
+                            <span>AI Agents</span>
+                        </li>
+                        <li data-page="monitoring">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Monitoring</span>
+                        </li>
+                        <li data-page="tasks">
+                            <i class="fas fa-tasks"></i>
+                            <span>Task History</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="menu-section">
+                    <h3>Core Agents</h3>
+                    <ul>
+                        <li data-page="autopilot">
+                            <i class="fas fa-plane"></i>
+                            <span>AutoPilot</span>
+                        </li>
+                        <li data-page="fabricai">
+                            <i class="fas fa-palette"></i>
+                            <span>FabricAI</span>
+                        </li>
+                        <li data-page="builderx">
+                            <i class="fas fa-tools"></i>
+                            <span>BuilderX</span>
+                        </li>
+                        <li data-page="insighor">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Insightor</span>
+                        </li>
+                        <li data-page="connector">
+                            <i class="fas fa-link"></i>
+                            <span>Connector</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="menu-section">
+                    <h3>Management</h3>
+                    <ul>
+                        <li data-page="accounts">
+                            <i class="fas fa-user-cog"></i>
+                            <span>Accounts</span>
+                        </li>
+                        <li data-page="fabric">
+                            <i class="fas fa-drafting-compass"></i>
+                            <span>Fabric Workspace</span>
+                        </li>
+                        <li data-page="orchestration">
+                            <i class="fas fa-network-wired"></i>
+                            <span>Orchestration</span>
+                        </li>
+                        <li data-page="tools">
+                            <i class="fas fa-wrench"></i>
+                            <span>Tools Builder</span>
+                        </li>
+                        <li data-page="models">
+                            <i class="fas fa-brain"></i>
+                            <span>AI Models</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="menu-section">
+                    <h3>Settings</h3>
+                    <ul>
+                        <li data-page="preferences">
+                            <i class="fas fa-cog"></i>
+                            <span>Preferences</span>
+                        </li>
+                        <li data-page="notifications">
+                            <i class="fas fa-bell"></i>
+                            <span>Notifications</span>
+                        </li>
+                        <li onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 id="pageTitle">Dashboard Overview</h1>
+                </div>
+
+                <div class="header-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search...">
+                    </div>
+
+                    <div class="user-menu">
+                        <div class="user-info">
+                            <span id="userName">Admin User</span>
+                            <small id="userRole">Administrator</small>
+                        </div>
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Overview Page -->
+                <div id="overviewPage" class="page active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="totalAgents">0</h3>
+                                <p>Total AI Agents</p>
+                                <span class="stat-trend up">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span id="agentsTrend">0%</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="activeTasks">0</h3>
+                                <p>Active Tasks</p>
+                                <span class="stat-trend up">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span id="tasksTrend">0%</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="systemLoad">0%</h3>
+                                <p>System Load</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="systemLoadBar"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="uptime">00:00:00</h3>
+                                <p>System Uptime</p>
+                                <span class="stat-status online">Online</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <div class="chart-container">
+                            <h3>Agent Performance</h3>
+                            <canvas id="agentPerformanceChart"></canvas>
+                        </div>
+
+                        <div class="chart-container">
+                            <h3>Task Distribution</h3>
+                            <canvas id="taskDistributionChart"></canvas>
+                        </div>
+
+                        <div class="recent-activity">
+                            <h3>Recent Activity</h3>
+                            <div id="activityList" class="activity-list">
+                                <!-- Activity items will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <div class="system-status">
+                            <h3>System Status</h3>
+                            <div id="systemStatus" class="status-grid">
+                                <!-- System status items will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Agents Page -->
+                <div id="agentsPage" class="page">
+                    <div class="page-header">
+                        <h2>AI Agent Management</h2>
+                        <button class="btn btn-primary" onclick="createNewAgent()">
+                            <i class="fas fa-plus"></i>
+                            Create Agent
+                        </button>
+                    </div>
+
+                    <div class="agents-grid" id="agentsGrid">
+                        <!-- Agent cards will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Core Agent Pages -->
+                <div id="autopilotPage" class="page">
+                    <div class="agent-header">
+                        <div class="agent-info">
+                            <h2><i class="fas fa-plane"></i> AutoPilot Agent</h2>
+                            <p>Autonomous system management and optimization</p>
+                        </div>
+                        <div class="agent-status" id="autopilotStatus">
+                            <span class="status-indicator"></span>
+                            <span class="status-text">Initializing...</span>
+                        </div>
+                    </div>
+
+                    <div class="agent-controls">
+                        <button class="btn btn-success" onclick="startAgent('autopilot')">
+                            <i class="fas fa-play"></i>
+                            Start
+                        </button>
+                        <button class="btn btn-warning" onclick="pauseAgent('autopilot')">
+                            <i class="fas fa-pause"></i>
+                            Pause
+                        </button>
+                        <button class="btn btn-danger" onclick="stopAgent('autopilot')">
+                            <i class="fas fa-stop"></i>
+                            Stop
+                        </button>
+                    </div>
+
+                    <div class="agent-metrics">
+                        <div class="metric-card">
+                            <h4>Tasks Completed</h4>
+                            <div class="metric-value" id="autopilotTasks">0</div>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Success Rate</h4>
+                            <div class="metric-value" id="autopilotSuccess">0%</div>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Uptime</h4>
+                            <div class="metric-value" id="autopilotUptime">00:00:00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="fabricaiPage" class="page">
+                    <div class="agent-header">
+                        <div class="agent-info">
+                            <h2><i class="fas fa-palette"></i> FabricAI Agent</h2>
+                            <p>Creative design and content generation</p>
+                        </div>
+                        <div class="agent-status" id="fabricaiStatus">
+                            <span class="status-indicator"></span>
+                            <span class="status-text">Initializing...</span>
+                        </div>
+                    </div>
+
+                    <div class="fabric-workspace">
+                        <div class="workspace-toolbar">
+                            <button class="btn btn-secondary" onclick="generateDesign()">
+                                <i class="fas fa-magic"></i>
+                                Generate Design
+                            </button>
+                            <button class="btn btn-secondary" onclick="exportDesign()">
+                                <i class="fas fa-download"></i>
+                                Export
+                            </button>
+                        </div>
+
+                        <div class="design-canvas" id="designCanvas">
+                            <div class="canvas-placeholder">
+                                <i class="fas fa-palette"></i>
+                                <p>Design workspace will appear here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="builderxPage" class="page">
+                    <div class="agent-header">
+                        <div class="agent-info">
+                            <h2><i class="fas fa-tools"></i> BuilderX Agent</h2>
+                            <p>Automated development and deployment</p>
+                        </div>
+                        <div class="agent-status" id="builderxStatus">
+                            <span class="status-indicator"></span>
+                            <span class="status-text">Initializing...</span>
+                        </div>
+                    </div>
+
+                    <div class="builder-interface">
+                        <div class="project-list" id="projectList">
+                            <!-- Projects will be populated by JavaScript -->
+                        </div>
+
+                        <div class="build-controls">
+                            <button class="btn btn-success" onclick="buildProject()">
+                                <i class="fas fa-hammer"></i>
+                                Build Project
+                            </button>
+                            <button class="btn btn-primary" onclick="deployProject()">
+                                <i class="fas fa-rocket"></i>
+                                Deploy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="insighorPage" class="page">
+                    <div class="agent-header">
+                        <div class="agent-info">
+                            <h2><i class="fas fa-chart-bar"></i> Insightor Agent</h2>
+                            <p>Business intelligence and analytics</p>
+                        </div>
+                        <div class="agent-status" id="insighorStatus">
+                            <span class="status-indicator"></span>
+                            <span class="status-text">Initializing...</span>
+                        </div>
+                    </div>
+
+                    <div class="analytics-dashboard">
+                        <div class="chart-grid">
+                            <div class="chart-container">
+                                <h4>Performance Metrics</h4>
+                                <canvas id="performanceChart"></canvas>
+                            </div>
+                            <div class="chart-container">
+                                <h4>Trend Analysis</h4>
+                                <canvas id="trendChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="connectorPage" class="page">
+                    <div class="agent-header">
+                        <div class="agent-info">
+                            <h2><i class="fas fa-link"></i> Connector Agent</h2>
+                            <p>Third-party integrations and API management</p>
+                        </div>
+                        <div class="agent-status" id="connectorStatus">
+                            <span class="status-indicator"></span>
+                            <span class="status-text">Initializing...</span>
+                        </div>
+                    </div>
+
+                    <div class="integrations-grid" id="integrationsGrid">
+                        <!-- Integration cards will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Other pages will be added as needed -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notifications" class="notifications-container">
+        <!-- Notifications will be populated by JavaScript -->
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-robot"></i>
+            <p>Loading Pinnacle AI Platform...</p>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/agents.js"></script>
+    <script src="js/websocket.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html></content>
+</edit_file>

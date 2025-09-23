@@ -1,0 +1,631 @@
+/**
+ * Pinnacle AI Boutique Storefront - Auto-Completion Styles
+ *
+ * Comprehensive styling for storefront auto-completion components including:
+ * - Product search with images and prices
+ * - E-commerce specific layouts
+ * - Shopping cart integration
+ * - Mobile-responsive design
+ * - Dark theme support
+ */
+
+/* Base Storefront Auto-Completion Styles */
+.storefront-autocomplete-container {
+    position: relative;
+    width: 100%;
+}
+
+.storefront-autocomplete-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid var(--border-color, #d1d5db);
+    border-radius: var(--border-radius, 8px);
+    background-color: var(--bg-color, #ffffff);
+    color: var(--text-color, #111827);
+    font-size: 0.875rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.storefront-autocomplete-input:focus {
+    outline: none;
+    border-color: var(--primary-color, #3b82f6);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.storefront-autocomplete-input::placeholder {
+    color: var(--placeholder-color, #9ca3af);
+}
+
+/* Dropdown Styles */
+.storefront-autocomplete-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-color, #ffffff);
+    border: 1px solid var(--border-color, #d1d5db);
+    border-radius: var(--border-radius, 8px);
+    box-shadow: var(--shadow, 0 4px 12px rgba(0, 0, 0, 0.15));
+    z-index: var(--z-index, 1000);
+    max-height: var(--max-height, 400px);
+    overflow-y: auto;
+    margin-top: 4px;
+    display: none;
+}
+
+.storefront-autocomplete-dropdown.show {
+    display: block;
+}
+
+/* Loading State */
+.storefront-autocomplete-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    color: var(--text-color, #6b7280);
+    font-size: 0.875rem;
+}
+
+.storefront-autocomplete-loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color, #e5e7eb);
+    border-top: 2px solid var(--primary-color, #3b82f6);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 0.75rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* No Results State */
+.storefront-autocomplete-no-results {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--text-color, #6b7280);
+    font-size: 0.875rem;
+    font-style: italic;
+}
+
+/* Error State */
+.storefront-autocomplete-error {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    color: var(--error-color, #dc2626);
+    font-size: 0.875rem;
+}
+
+.storefront-autocomplete-error i {
+    margin-right: 0.5rem;
+}
+
+/* Results List */
+.storefront-autocomplete-results {
+    max-height: inherit;
+    overflow-y: auto;
+}
+
+/* Result Items */
+.storefront-autocomplete-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border-bottom: 1px solid var(--border-color-light, #f3f4f6);
+    position: relative;
+}
+
+.storefront-autocomplete-item:last-child {
+    border-bottom: none;
+}
+
+.storefront-autocomplete-item:hover,
+.storefront-autocomplete-item.selected {
+    background-color: var(--hover-bg, #f9fafb);
+}
+
+.storefront-autocomplete-item.selected {
+    background-color: var(--selected-bg, #eff6ff);
+    border-left: 3px solid var(--selected-border, #3b82f6);
+}
+
+/* Product Search Specific Styles */
+.product-search-autocomplete-item {
+    padding: 0.75rem 1rem;
+    min-height: 60px;
+}
+
+.product-search-autocomplete-item-image {
+    flex-shrink: 0;
+    margin-right: 0.75rem;
+}
+
+.product-search-autocomplete-item-image img {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 1px solid var(--border-color-light, #f3f4f6);
+}
+
+.product-search-autocomplete-item-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.product-search-autocomplete-item-title {
+    font-weight: 500;
+    color: var(--text-color, #111827);
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.25;
+}
+
+.product-search-autocomplete-item-description {
+    font-size: 0.75rem;
+    color: var(--text-color-muted, #6b7280);
+    line-height: 1.25;
+    margin-bottom: 0.5rem;
+}
+
+.product-search-autocomplete-item-category {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: var(--primary-color, #3b82f6);
+    background-color: rgba(59, 130, 246, 0.1);
+    padding: 0.125rem 0.5rem;
+    border-radius: 12px;
+    display: inline-block;
+    margin-bottom: 0.25rem;
+}
+
+.product-search-autocomplete-item-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.product-search-autocomplete-item-price {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--price-color, #059669);
+}
+
+.product-search-autocomplete-item-price .original-price {
+    text-decoration: line-through;
+    color: var(--text-color-muted, #6b7280);
+    font-weight: 400;
+    margin-right: 0.5rem;
+}
+
+.product-search-autocomplete-item-price .sale-price {
+    color: var(--price-color, #059669);
+}
+
+.product-search-autocomplete-item-stock {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.125rem 0.5rem;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.product-search-autocomplete-item-stock.in-stock {
+    color: var(--stock-color, #059669);
+    background-color: rgba(5, 150, 105, 0.1);
+}
+
+.product-search-autocomplete-item-stock.out-of-stock {
+    color: var(--out-of-stock-color, #dc2626);
+    background-color: rgba(220, 38, 38, 0.1);
+}
+
+.product-search-autocomplete-item-action {
+    flex-shrink: 0;
+    margin-left: 0.75rem;
+}
+
+.add-to-cart-btn {
+    background-color: var(--primary-color, #3b82f6);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.add-to-cart-btn:hover {
+    background-color: var(--primary-hover, #2563eb);
+    transform: translateY(-1px);
+}
+
+.add-to-cart-btn:active {
+    transform: translateY(0);
+}
+
+/* Highlighted Text */
+.highlight {
+    background-color: var(--highlight-bg, #fef3c7);
+    color: var(--highlight-text, #92400e);
+    padding: 0.125rem 0.25rem;
+    border-radius: 2px;
+    font-weight: 600;
+}
+
+/* Add to Cart Feedback */
+.add-to-cart-feedback {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--success-bg, #10b981);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.add-to-cart-feedback.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.add-to-cart-feedback i {
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .storefront-autocomplete-dropdown {
+        max-height: 300px;
+    }
+
+    .storefront-autocomplete-item {
+        padding: 0.75rem;
+    }
+
+    .product-search-autocomplete-item {
+        min-height: 50px;
+    }
+
+    .product-search-autocomplete-item-image img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .product-search-autocomplete-item-title {
+        font-size: 0.8125rem;
+    }
+
+    .product-search-autocomplete-item-description {
+        font-size: 0.6875rem;
+    }
+
+    .add-to-cart-btn {
+        padding: 0.375rem 0.5rem;
+        font-size: 0.6875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .storefront-autocomplete-dropdown {
+        max-height: 250px;
+        left: -8px;
+        right: -8px;
+    }
+
+    .storefront-autocomplete-item {
+        padding: 0.625rem;
+    }
+
+    .product-search-autocomplete-item-image img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .product-search-autocomplete-item-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+
+    .add-to-cart-btn {
+        padding: 0.25rem 0.375rem;
+        font-size: 0.625rem;
+    }
+}
+
+/* Dark Theme Support */
+@media (prefers-color-scheme: dark) {
+    .storefront-autocomplete-input {
+        background-color: var(--dark-bg, #1f2937);
+        border-color: var(--dark-border, #374151);
+        color: var(--dark-text, #f9fafb);
+    }
+
+    .storefront-autocomplete-input::placeholder {
+        color: var(--dark-placeholder, #6b7280);
+    }
+
+    .storefront-autocomplete-dropdown {
+        background-color: var(--dark-bg, #1f2937);
+        border-color: var(--dark-border, #374151);
+        color: var(--dark-text, #f9fafb);
+    }
+
+    .storefront-autocomplete-item:hover,
+    .storefront-autocomplete-item.selected {
+        background-color: var(--dark-hover, #374151);
+    }
+
+    .storefront-autocomplete-item.selected {
+        background-color: var(--dark-selected, #1e3a8a);
+        border-left-color: var(--dark-selected-border, #60a5fa);
+    }
+
+    .storefront-autocomplete-item-title {
+        color: var(--dark-text, #f9fafb);
+    }
+
+    .storefront-autocomplete-item-description,
+    .storefront-autocomplete-item-meta {
+        color: var(--dark-text-muted, #9ca3af);
+    }
+
+    .product-search-autocomplete-item-price .original-price {
+        color: var(--dark-text-muted, #9ca3af);
+    }
+
+    .highlight {
+        background-color: var(--dark-highlight-bg, #7c2d12);
+        color: var(--dark-highlight-text, #fed7aa);
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .storefront-autocomplete-input {
+        border-width: 3px;
+    }
+
+    .storefront-autocomplete-dropdown {
+        border-width: 2px;
+    }
+
+    .storefront-autocomplete-item.selected {
+        border-left-width: 4px;
+    }
+
+    .highlight {
+        background-color: #000000;
+        color: #ffffff;
+        font-weight: bold;
+    }
+
+    .add-to-cart-btn {
+        border: 2px solid white;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .storefront-autocomplete-input,
+    .storefront-autocomplete-item,
+    .storefront-autocomplete-loading-spinner,
+    .add-to-cart-btn,
+    .add-to-cart-feedback {
+        transition: none;
+    }
+
+    .storefront-autocomplete-loading-spinner {
+        animation: none;
+    }
+
+    .add-to-cart-feedback {
+        transition: opacity 0.3s ease;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .storefront-autocomplete-container {
+        position: static;
+    }
+
+    .storefront-autocomplete-dropdown {
+        display: none !important;
+    }
+
+    .storefront-autocomplete-input {
+        border: 1px solid #000000;
+        background-color: transparent;
+    }
+
+    .add-to-cart-feedback {
+        display: none !important;
+    }
+}
+
+/* Custom Scrollbar */
+.storefront-autocomplete-dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
+.storefront-autocomplete-dropdown::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track, #f1f5f9);
+    border-radius: 3px;
+}
+
+.storefront-autocomplete-dropdown::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb, #cbd5e1);
+    border-radius: 3px;
+}
+
+.storefront-autocomplete-dropdown::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover, #94a3b8);
+}
+
+/* Dark theme scrollbar */
+@media (prefers-color-scheme: dark) {
+    .storefront-autocomplete-dropdown::-webkit-scrollbar-track {
+        background-color: var(--dark-scrollbar-track, #374151);
+    }
+
+    .storefront-autocomplete-dropdown::-webkit-scrollbar-thumb {
+        background-color: var(--dark-scrollbar-thumb, #6b7280);
+    }
+
+    .storefront-autocomplete-dropdown::-webkit-scrollbar-thumb:hover {
+        background-color: var(--dark-scrollbar-thumb-hover, #9ca3af);
+    }
+}
+
+/* Focus Management */
+.storefront-autocomplete-item:focus {
+    outline: 2px solid var(--focus-color, #3b82f6);
+    outline-offset: -2px;
+}
+
+/* Loading States */
+.storefront-autocomplete-item.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.storefront-autocomplete-item.loading::after {
+    content: '';
+    position: absolute;
+    right: 1rem;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--border-color, #e5e7eb);
+    border-top: 2px solid var(--primary-color, #3b82f6);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+.fade-out {
+    animation: fadeOut 0.2s ease-in-out;
+}
+
+.slide-down {
+    animation: slideDown 0.2s ease-in-out;
+}
+
+.slide-up {
+    animation: slideUp 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Utility Classes */
+.storefront-autocomplete-hidden {
+    display: none !important;
+}
+
+.storefront-autocomplete-visible {
+    display: block !important;
+}
+
+.storefront-autocomplete-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Custom Properties for Theming */
+:root {
+    --storefront-border-radius: 8px;
+    --storefront-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --storefront-z-index: 1000;
+    --storefront-max-height: 400px;
+
+    /* Colors */
+    --primary-color: #3b82f6;
+    --primary-hover: #2563eb;
+    --error-color: #dc2626;
+    --border-color: #d1d5db;
+    --bg-color: #ffffff;
+    --text-color: #111827;
+    --text-color-muted: #6b7280;
+    --hover-bg: #f9fafb;
+    --selected-bg: #eff6ff;
+    --selected-border: #3b82f6;
+    --highlight-bg: #fef3c7;
+    --highlight-text: #92400e;
+    --price-color: #059669;
+    --stock-color: #059669;
+    --out-of-stock-color: #dc2626;
+    --success-bg: #10b981;
+
+    /* Dark theme colors */
+    --dark-bg: #1f2937;
+    --dark-border: #374151;
+    --dark-text: #f9fafb;
+    --dark-text-muted: #9ca3af;
+    --dark-hover: #374151;
+    --dark-selected: #1e3a8a;
+    --dark-selected-border: #60a5fa;
+    --dark-highlight-bg: #7c2d12;
+    --dark-highlight-text: #fed7aa;
+    --dark-price-color: #10b981;
+    --dark-stock-color: #10b981;
+    --dark-out-of-stock-color: #ef4444;
+    --dark-success-bg: #059669;
+}</code>
+</edit_file>

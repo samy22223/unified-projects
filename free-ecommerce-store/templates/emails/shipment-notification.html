@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipment Notification</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background: #2196F3; color: white; padding: 20px; text-align: center; }
+        .content { padding: 20px; background: #f9f9f9; }
+        .tracking-info { background: white; padding: 15px; margin: 20px 0; border-radius: 5px; border-left: 4px solid #2196F3; }
+        .footer { text-align: center; padding: 20px; font-size: 12px; color: #666; }
+        .button { display: inline-block; background: #2196F3; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; }
+        .tracking-number { font-size: 18px; font-weight: bold; color: #2196F3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Your Order Has Shipped!</h1>
+            <p>Track your package in real-time</p>
+        </div>
+
+        <div class="content">
+            <p>Dear {customer_name},</p>
+
+            <p>Great news! Your order has been shipped and is on its way to you.</p>
+
+            <div class="tracking-info">
+                <h3>Tracking Information</h3>
+                <p><strong>Order Number:</strong> {order_number}</p>
+                <p><strong>Tracking Number:</strong> <span class="tracking-number">{tracking_number}</span></p>
+                <p><strong>Carrier:</strong> {carrier}</p>
+
+                <?php if (!empty($tracking_url)): ?>
+                <p style="margin-top: 15px;">
+                    <a href="{tracking_url}" class="button" target="_blank">Track Your Package</a>
+                </p>
+                <?php endif; ?>
+            </div>
+
+            <p>You can expect delivery within 3-7 business days, depending on your location. You'll receive another email when your package is delivered.</p>
+
+            <p>If you have any questions about your order, please don't hesitate to contact our customer support team.</p>
+
+            <p>Thank you for choosing us!</p>
+            <p>Best regards,<br>
+            The Pinnacle Store Team</p>
+
+            <p style="text-align: center; margin: 30px 0;">
+                <a href="<?php echo home_url(); ?>" class="button">Shop More</a>
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>This email was sent to you because you placed an order at <?php echo get_bloginfo('name'); ?>.</p>
+            <p>If you have any questions, please contact us at support@yourdomain.com</p>
+            <p>&copy; <?php echo date('Y'); ?> <?php echo get_bloginfo('name'); ?>. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

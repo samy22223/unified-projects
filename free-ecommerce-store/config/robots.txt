@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Block admin areas
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/themes/
+Disallow: /wp-content/uploads/backup/
+
+# Allow important pages
+Allow: /wp-content/uploads/
+Allow: /wp-content/themes/custom-theme/images/
+Allow: /sitemap.xml
+
+# Crawl delay for bots
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://yourdomain.tk/sitemap.xml
