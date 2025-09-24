@@ -88,7 +88,7 @@ router.post('/', auth, validate(schemas.task), async (req, res) => {
       priority,
       status,
       category,
-      user: req.user._id,
+      user: req.user._id
     });
 
     await task.save();

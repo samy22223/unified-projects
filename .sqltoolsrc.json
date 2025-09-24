@@ -1,0 +1,24 @@
+{
+  "connections": [
+    {
+      "name": "Pinnacle AI Platform - PostgreSQL",
+      "driver": "PostgreSQL",
+      "host": "localhost",
+      "port": 5432,
+      "database": "pinnacle_ai",
+      "username": "${env:PINNACLE_DB_USER}",
+      "password": "${env:PINNACLE_DB_PASSWORD}",
+      "connectionTimeout": 30000
+    },
+    {
+      "name": "Free Ecommerce Store - MySQL",
+      "driver": "MySQL",
+      "host": "localhost",
+      "port": 3306,
+      "database": "${env:WORDPRESS_DB_NAME}",
+      "username": "${env:WORDPRESS_DB_USER}",
+      "password": "${env:WORDPRESS_DB_PASSWORD}",
+      "connectionTimeout": 30000
+    }
+  ]
+}

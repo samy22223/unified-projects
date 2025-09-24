@@ -1,0 +1,71 @@
+name: Task Manager CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'task-manager-app/**'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'task-manager-app/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./task-manager-app
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: |
+          task-manager-app/server/package-lock.json
+          task-manager-app/client/package-lock.json
+
+    - name: Install server dependencies
+      run: |
+        cd server
+        npm ci
+
+    - name: Install client dependencies
+      run: |
+        cd client
+        npm ci
+
+    - name: Run server tests
+      run: |
+        cd server
+        npm test
+
+    - name: Build client
+      run: |
+        cd client
+        npm run build
+
+    - name: Lint code
+      run: |
+        cd server
+        npm run lint || true
+        cd ../client
+        npm run lint || true
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Deploy to production
+      run: echo "Deploy step would go here"

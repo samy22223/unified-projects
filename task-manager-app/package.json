@@ -1,0 +1,39 @@
+{
+  "name": "task-manager-app",
+  "version": "1.0.0",
+  "description": "Task Manager Application - Full Stack App with Client and Server",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "npm run start --prefix server",
+    "dev": "npm run dev --prefix server",
+    "client": "npm start --prefix client",
+    "server": "npm run dev --prefix server",
+    "install-all": "npm install && npm install --prefix client && npm install --prefix server",
+    "build": "npm run build --prefix client",
+    "test": "npm test --prefix server",
+    "lint": "npx eslint@8.57.1 server",
+    "lint:fix": "npx eslint@8.57.1 server --fix",
+    "docker:up": "docker-compose -f ../docker-compose.yml up",
+    "docker:down": "docker-compose -f ../docker-compose.yml down"
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "keywords": [
+    "task-manager",
+    "full-stack",
+    "react",
+    "nodejs",
+    "mongodb"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.57.1"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
+}

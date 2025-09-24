@@ -1,0 +1,42 @@
+{
+  "manifest_version": 2,
+  "name": "Task Manager Quick Add",
+  "version": "1.0.0",
+  "description": "Quickly add tasks to your Task Manager from any webpage",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "https://*/*",
+    "http://*/*"
+  ],
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "Add Task",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }
+}

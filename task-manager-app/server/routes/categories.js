@@ -22,7 +22,7 @@ router.post('/', auth, validate(schemas.category), async (req, res) => {
 
     const category = new Category({
       name,
-      user: req.user._id,
+      user: req.user._id
     });
 
     await category.save();

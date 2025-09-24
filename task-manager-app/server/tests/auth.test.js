@@ -30,7 +30,7 @@ describe('Auth Routes', () => {
         .send({
           username: 'testuser',
           email: 'test@example.com',
-          password: 'password123',
+          password: 'password123'
         });
 
       expect(res.statusCode).toEqual(201);
@@ -42,7 +42,7 @@ describe('Auth Routes', () => {
       await User.create({
         username: 'existing',
         email: 'test@example.com',
-        password: 'password123',
+        password: 'password123'
       });
 
       const res = await request(app)
@@ -50,7 +50,7 @@ describe('Auth Routes', () => {
         .send({
           username: 'newuser',
           email: 'test@example.com',
-          password: 'password123',
+          password: 'password123'
         });
 
       expect(res.statusCode).toEqual(400);
@@ -63,7 +63,7 @@ describe('Auth Routes', () => {
       await User.create({
         username: 'testuser',
         email: 'test@example.com',
-        password: 'password123',
+        password: 'password123'
       });
     });
 
@@ -72,7 +72,7 @@ describe('Auth Routes', () => {
         .post('/api/auth/login')
         .send({
           email: 'test@example.com',
-          password: 'password123',
+          password: 'password123'
         });
 
       expect(res.statusCode).toEqual(200);
@@ -84,7 +84,7 @@ describe('Auth Routes', () => {
         .post('/api/auth/login')
         .send({
           email: 'test@example.com',
-          password: 'wrongpassword',
+          password: 'wrongpassword'
         });
 
       expect(res.statusCode).toEqual(400);

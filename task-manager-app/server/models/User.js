@@ -6,23 +6,23 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    trim: true,
+    trim: true
   },
   email: {
     type: String,
     required: true,
     unique: true,
     trim: true,
-    lowercase: true,
+    lowercase: true
   },
   password: {
     type: String,
-    required: true,
+    required: true
   },
   createdAt: {
     type: Date,
-    default: Date.now,
-  },
+    default: Date.now
+  }
 });
 
 // Hash password before saving
@@ -30,7 +30,8 @@ userSchema.pre('save', async function(next) {
   if (!this.isModified('password')) return next();
 
   try {
-    const salt = await bcrypt.genSalt(10);
+    const saltRounds = parseInt(process.env.BCRYPT_ROUNDS) || 10;
+    const salt = await bcrypt.genSalt(saltRounds);
     this.password = await bcrypt.hash(this.password, salt);
     next();
   } catch (error) {
@@ -42,5 +43,8 @@ userSchema.pre('save', async function(next) {
 userSchema.methods.comparePassword = async function(candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };
+
+// Indexes for performance optimization
+userSchema.index({ createdAt: -1 }); // For user analytics
 
 module.exports = mongoose.model('User', userSchema);

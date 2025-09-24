@@ -106,6 +106,26 @@ npm run serve
 
 Visit `http://localhost:3000` for the client and `http://localhost:5000` for the API.
 
+### Docker Development Setup (Recommended)
+For easier development with all services running together:
+```bash
+# From the project root directory
+docker-compose up -d
+```
+This will start:
+- MongoDB on port 27017
+- Backend API on port 5000
+- Frontend on port 3000
+- Analytics service on port 8001
+- Compliance service on port 8002
+
+### Firefox Extension
+Install the browser extension for quick task creation:
+1. Open Firefox and go to `about:debugging`
+2. Click "This Firefox" → "Load Temporary Add-on"
+3. Select `firefox-extension/manifest.json`
+4. Configure the extension with your API URL and auth token
+
 ## 🔧 Configuration
 
 ### Environment Variables

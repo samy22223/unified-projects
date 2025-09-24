@@ -1,0 +1,67 @@
+{
+  "recommendations": [
+    // JavaScript/TypeScript Development
+    "ms-vscode.vscode-typescript-next",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "ms-vscode.vscode-json",
+    "christian-kohler.path-intellisense",
+    "bradlc.vscode-tailwindcss",
+
+    // React Development
+    "ms-vscode.vscode-react-native",
+    "formulahendry.auto-rename-tag",
+    "christian-kohler.path-intellisense",
+
+    // Node.js Development
+    "ms-vscode.vscode-node-debug",
+    "ms-vscode.vscode-node-debug2",
+
+    // Python Development
+    "ms-python.python",
+    "ms-python.black-formatter",
+    "ms-python.flake8",
+    "ms-python.pylint",
+
+    // PHP Development
+    "bmewburn.vscode-intelephense-client",
+    "bradlc.vscode-tailwindcss",
+
+    // Database Tools
+    "mtxr.sqltools",
+    "mtxr.sqltools-driver-mysql",
+    "mtxr.sqltools-driver-pg",
+    "mtxr.sqltools-driver-mongodb",
+
+    // Docker
+    "ms-azuretools.vscode-docker",
+
+    // Git and Version Control
+    "eamodio.gitlens",
+    "ms-vscode.vscode-git-graph",
+    "github.copilot",
+    "github.copilot-chat",
+
+    // Testing
+    "ms-vscode.vscode-jest",
+    "hbenl.vscode-test-explorer",
+
+    // API Development
+    "humao.rest-client",
+
+    // Documentation
+    "ms-vscode.vscode-markdown",
+    "yzhang.markdown-all-in-one",
+
+    // Environment and Configuration
+    "dotenv.dotenv-vscode",
+
+    // Browser Development
+    "ms-edgedevtools.vscode-edge-devtools",
+
+    // General Development
+    "ms-vscode.vscode-live-server",
+    "formulahendry.code-runner",
+    "ms-vscode.vscode-terminal"
+  ]
+}

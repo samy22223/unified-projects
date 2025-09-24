@@ -1,0 +1,50 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "python.defaultInterpreterPath": "./pinnacle-ai-platform/venv/bin/python",
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.formatting.provider": "black",
+  "python.linting.flake8Enabled": true,
+  "php.validate.executablePath": "/usr/local/bin/php",
+  "sqltools.connections": [
+    {
+      "name": "Task Manager - MongoDB",
+      "driver": "MongoDB",
+      "server": "localhost",
+      "port": 27017,
+      "database": "taskmanager",
+      "username": "",
+      "password": ""
+    }
+  ],
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.git": true,
+    "**/.vscode": true,
+    "**/*.log": true,
+    "**/logs": true
+  },
+  "files.associations": {
+    "*.env": "properties",
+    "Dockerfile*": "dockerfile"
+  },
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+  "liveServer.settings.port": 5501,
+  "liveServer.settings.root": "/",
+  "jest.runAllTestsOnStartup": false
+}

@@ -171,6 +171,67 @@ const schemas = {
         'string.min': 'Category name cannot be empty',
         'string.max': 'Category name must be less than 50 characters'
       })
+  }),
+
+  // Profile and password schemas
+  profileUpdate: Joi.object({
+    username: Joi.string()
+      .min(3)
+      .max(30)
+      .messages({
+        'string.min': 'Username must be at least 3 characters long',
+        'string.max': 'Username must be less than 30 characters long'
+      }),
+    email: Joi.string()
+      .email()
+      .messages({
+        'string.email': 'Please provide a valid email address'
+      })
+  }),
+
+  changePassword: Joi.object({
+    currentPassword: Joi.string()
+      .required()
+      .messages({
+        'string.empty': 'Current password is required',
+        'any.required': 'Current password is required'
+      }),
+    newPassword: Joi.string()
+      .min(6)
+      .required()
+      .messages({
+        'string.empty': 'New password is required',
+        'string.min': 'New password must be at least 6 characters long',
+        'any.required': 'New password is required'
+      })
+  }),
+
+  forgotPassword: Joi.object({
+    email: Joi.string()
+      .email()
+      .required()
+      .messages({
+        'string.empty': 'Email is required',
+        'string.email': 'Please provide a valid email address',
+        'any.required': 'Email is required'
+      })
+  }),
+
+  resetPassword: Joi.object({
+    token: Joi.string()
+      .required()
+      .messages({
+        'string.empty': 'Reset token is required',
+        'any.required': 'Reset token is required'
+      }),
+    newPassword: Joi.string()
+      .min(6)
+      .required()
+      .messages({
+        'string.empty': 'New password is required',
+        'string.min': 'New password must be at least 6 characters long',
+        'any.required': 'New password is required'
+      })
   })
 };
 

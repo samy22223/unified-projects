@@ -149,8 +149,8 @@ router.get('/productivity', auth, async (req, res) => {
     const totalCreated = result.reduce((sum, item) => sum + item.created, 0);
     const totalCompleted = result.reduce((sum, item) => sum + item.completed, 0);
     const avgTasksPerDay = period === 'week' ? (totalCreated / 7).toFixed(1) : 
-                           period === 'month' ? (totalCreated / 30).toFixed(1) : 
-                           (totalCreated / 365).toFixed(1);
+      period === 'month' ? (totalCreated / 30).toFixed(1) : 
+        (totalCreated / 365).toFixed(1);
     
     res.json({
       period,
@@ -178,10 +178,10 @@ router.get('/recent-activity', auth, async (req, res) => {
       user: userId, 
       status: 'Completed' 
     })
-    .sort({ updatedAt: -1 })
-    .limit(parseInt(limit))
-    .populate('category', 'name')
-    .select('title description category priority updatedAt');
+      .sort({ updatedAt: -1 })
+      .limit(parseInt(limit))
+      .populate('category', 'name')
+      .select('title description category priority updatedAt');
     
     res.json(recentTasks);
   } catch (error) {
@@ -205,9 +205,9 @@ router.get('/due-soon', auth, async (req, res) => {
       status: { $ne: 'Completed' },
       dueDate: { $gte: now, $lte: futureDate }
     })
-    .sort({ dueDate: 1 })
-    .populate('category', 'name')
-    .select('title description category priority dueDate status');
+      .sort({ dueDate: 1 })
+      .populate('category', 'name')
+      .select('title description category priority dueDate status');
     
     res.json(dueSoonTasks);
   } catch (error) {

@@ -1,0 +1,68 @@
+http:
+  routers:
+    omnicore-dashboard:
+      rule: "Host(`dashboard.localhost`)"
+      service: omnicore-dashboard
+      entryPoints:
+        - web
+
+    pinnacle-ai-platform:
+      rule: "Host(`api.localhost`)"
+      service: pinnacle-ai-platform
+      entryPoints:
+        - web
+
+    grafana:
+      rule: "Host(`grafana.localhost`)"
+      service: grafana
+      entryPoints:
+        - web
+
+    n8n:
+      rule: "Host(`n8n.localhost`)"
+      service: n8n
+      entryPoints:
+        - web
+
+    wordpress:
+      rule: "Host(`shop.localhost`)"
+      service: wordpress
+      entryPoints:
+        - web
+
+    keycloak:
+      rule: "Host(`auth.localhost`)"
+      service: keycloak
+      entryPoints:
+        - web
+
+  services:
+    omnicore-dashboard:
+      loadBalancer:
+        servers:
+          - url: "http://omnicore-dashboard:3000"
+
+    pinnacle-ai-platform:
+      loadBalancer:
+        servers:
+          - url: "http://pinnacle-ai-platform:8000"
+
+    grafana:
+      loadBalancer:
+        servers:
+          - url: "http://grafana:3000"
+
+    n8n:
+      loadBalancer:
+        servers:
+          - url: "http://n8n:5678"
+
+    wordpress:
+      loadBalancer:
+        servers:
+          - url: "http://wordpress:80"
+
+    keycloak:
+      loadBalancer:
+        servers:
+          - url: "http://keycloak:8080"

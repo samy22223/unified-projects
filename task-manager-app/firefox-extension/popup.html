@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Task Manager - Quick Add</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Quick Add Task</h1>
+
+    <form id="taskForm">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" required placeholder="Enter task title">
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" placeholder="Enter task description"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="priority">Priority</label>
+        <select id="priority">
+          <option value="Low">Low</option>
+          <option value="Medium" selected>Medium</option>
+          <option value="High">High</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="dueDate">Due Date</label>
+        <input type="date" id="dueDate">
+      </div>
+
+      <div class="form-group">
+        <label>
+          <input type="checkbox" id="includeUrl"> Include current page URL
+        </label>
+      </div>
+
+      <button type="submit" id="submitBtn">Add Task</button>
+    </form>
+
+    <div id="status" class="status hidden"></div>
+
+    <div class="footer">
+      <a href="#" id="openApp">Open Task Manager</a>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

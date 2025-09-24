@@ -1,0 +1,73 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'pinnacle-ai-platform'
+    static_configs:
+      - targets: ['pinnacle-ai-platform:8000']
+    metrics_path: '/metrics'
+    scrape_interval: 5s
+
+  - job_name: 'omnicore-dashboard'
+    static_configs:
+      - targets: ['omnicore-dashboard:3000']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  - job_name: 'postgresql'
+    static_configs:
+      - targets: ['postgresql:9187']
+    scrape_interval: 10s
+
+  - job_name: 'mongodb'
+    static_configs:
+      - targets: ['mongodb:9216']
+    scrape_interval: 10s
+
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis:9121']
+    scrape_interval: 10s
+
+  - job_name: 'rabbitmq'
+    static_configs:
+      - targets: ['rabbitmq:15692']
+    scrape_interval: 10s
+
+  - job_name: 'neo4j'
+    static_configs:
+      - targets: ['neo4j:2004']
+    scrape_interval: 10s
+
+  - job_name: 'chroma'
+    static_configs:
+      - targets: ['chroma:8000']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  - job_name: 'wordpress'
+    static_configs:
+      - targets: ['wordpress:80']
+    metrics_path: '/wp-json/omnicore/v1/metrics'
+    scrape_interval: 30s
+
+  - job_name: 'n8n'
+    static_configs:
+      - targets: ['n8n:5678']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  - job_name: 'ollama'
+    static_configs:
+      - targets: ['ollama:11434']
+    metrics_path: '/metrics'
+    scrape_interval: 30s
